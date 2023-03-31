@@ -4,11 +4,10 @@ import java.io.*;
 import java.time.LocalDate;
 
 public class Example {
-    private static final String filePath = "C:\\Users\\ADMIN\\Documents\\java-core\\java-io\\src\\main\\java\\org\\example\\dataOutputStream\\outpu.txt";
+    private static final String filePath = "C:\\Users\\ADMIN\\Documents\\java-core\\java-io\\src\\main\\java\\org\\example\\dataOutputStream\\output.txt";
 
     public static void main(String[] args) throws Exception {
-        writeFile(filePath);
-        readFile(filePath);
+        readDataFromFile(filePath);
     }
 
     private static void writeFile(String filePath) throws IOException {
@@ -53,6 +52,25 @@ public class Example {
                     row, orderDate, finished, item, units, unitCost, total);
         }
         System.out.println("Read file output.txt success !");
+    }
+
+    private static void writeToFile(String filePath) throws IOException {
+        DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(filePath));
+        dataOutputStream.writeInt(10);
+        dataOutputStream.writeDouble(3.141592654);
+        dataOutputStream.writeUTF("Duong Xuan Khue");
+        dataOutputStream.close();
+    }
+
+    private static void readDataFromFile(String filePath) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+        DataOutputStream dataOutputStream=new DataOutputStream(byteArrayOutputStream);
+        dataOutputStream.writeByte(111);
+        dataOutputStream.writeByte(112);
+        byte[]bytes= byteArrayOutputStream.toByteArray();
+        for (byte b : bytes) {
+            System.out.println(b);
+        }
     }
 
 }
