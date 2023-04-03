@@ -41,15 +41,14 @@ public class Example {
         File file = new File(filePath);
         InputStream inputStream = new FileInputStream(file);
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-        List<Employee> list = (List<Employee>) objectInputStream.readObject();
-//        while (true) {
-//            try {
-//                list.add((Employee) objectInputStream.
-//                        readObject());
-//            } catch (EOFException e) {
-//                break;
-//            }
-//        }
+        List<Employee> list = new ArrayList<>();
+        while (true) {
+            try {
+                list.add((Employee) objectInputStream.readObject());
+            } catch (EOFException e) {
+                break;
+            }
+        }
         System.out.println(list);
         objectInputStream.close();
         System.out.println("Read finished !");
